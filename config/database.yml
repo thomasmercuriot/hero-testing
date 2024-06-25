@@ -77,8 +77,22 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+# production:
+#   <<: *default
+#   database: certif_production
+#   username: certif
+#   password: <%= ENV["CERTIF_DATABASE_PASSWORD"] %>
+
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   pool: 5
+#   database: <%= ENV['DATABASE_URL'] %>
+#   variables:
+#     sslmode: require
+
 production:
   <<: *default
-  database: certif_production
-  username: certif
-  password: <%= ENV["CERTIF_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  variables:
+    sslmode: require
